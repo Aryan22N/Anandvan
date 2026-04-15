@@ -1,0 +1,162 @@
+/* Awareness.css */
+
+.awareness-page {
+  padding-top: 100px;
+}
+
+.hero-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), linear-gradient(135deg, #2F855A 0%, #1a5f3f 100%);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 8rem 2rem;
+  margin-bottom: 3rem;
+}
+
+.hero-banner h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease;
+}
+
+.hero-banner p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 1.5s ease;
+}
+
+.section {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.section h2 {
+  color: #2F855A;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: #48BB78;
+}
+
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.myths-facts-container {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.myths, .facts {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.myths:hover, .facts:hover {
+  transform: translateY(-5px);
+}
+
+.myths {
+  border-top: 4px solid #FC8181;
+}
+
+.facts {
+  border-top: 4px solid #68D391;
+}
+
+.myths h3, .facts h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.myths h3 {
+  color: #E53E3E;
+}
+
+.facts h3 {
+  color: #38A169;
+}
+
+.myths ul, .facts ul {
+  padding-left: 1.5rem;
+}
+
+.myths li, .facts li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.cta-section {
+  background-color: #2F855A;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: white;
+  color: #2F855A;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background-color: #F6E05E;
+  color: #2D3748;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 6rem 1.5rem;
+  }
+  .myths-facts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,299 @@
+/* ===== DAAN SECTION ===== */
+
+.daan-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.daan-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+  animation: rotateBg 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.daan-section .container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.daan-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.daan-section-header .daan-badge {
+  display: inline-block;
+  background: rgba(255, 200, 80, 0.15);
+  border: 1px solid rgba(255, 200, 80, 0.4);
+  color: #ffc84f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
+}
+
+.daan-section-header h2 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.daan-section-header h2 span {
+  background: linear-gradient(90deg, #ffc84f, #ff8c42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.daan-section-header p {
+  color: rgba(255,255,255,0.65);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== DAAN CARDS GRID ===== */
+.daan-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* ===== INDIVIDUAL DAAN CARD ===== */
+.daan-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.daan-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* Card Gradient Themes */
+.daan-card-shram {
+  background: linear-gradient(145deg, #1a472a, #2d6a4f);
+}
+.daan-card-anand {
+  background: linear-gradient(145deg, #7b2d00, #c0392b);
+}
+.daan-card-vriksha {
+  background: linear-gradient(145deg, #0d3b6e, #2980b9);
+}
+.daan-card-anna {
+  background: linear-gradient(145deg, #5d3a1a, #d4882e);
+}
+
+/* Iconic background circle */
+.daan-card-bg-circle {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+
+.daan-card-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.daan-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.daan-card-hindi {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.4rem;
+}
+
+.daan-card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.daan-card-subtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.daan-card-shram  .daan-card-subtitle { color: #95d5b2; }
+.daan-card-anand  .daan-card-subtitle { color: #ffa07a; }
+.daan-card-vriksha .daan-card-subtitle { color: #74b9ff; }
+.daan-card-anna   .daan-card-subtitle { color: #fdcb6e; }
+
+.daan-card-desc {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.8rem;
+}
+
+.daan-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Modal */
+.daan-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 25, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.daan-modal {
+  background: #fff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.daan-modal-header {
+  padding: 2rem 2rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.daan-modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.daan-modal-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.daan-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #f7fafc;
+  cursor: pointer;
+}
+
+.daan-modal-form {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.daan-form-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.daan-modal-submit {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.daan-qr-image-wrapper {
+  width: 240px;
+  height: 240px;
+  margin: 0 auto;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.daan-qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .daan-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .daan-cards-grid { grid-template-columns: 1fr; }
+}

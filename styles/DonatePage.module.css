@@ -1,0 +1,28 @@
+.pageContainer {
+  @apply max-w-3xl mx-auto p-8 bg-white rounded-[1.5rem] shadow-[0_20px_40px_rgba(0,0,0,0.05)];
+}
+
+.form {
+  @apply grid gap-4 mt-6;
+}
+
+.formLabel {
+  @apply grid gap-2 font-semibold;
+}
+
+.formInput,
+.formTextarea {
+  @apply w-full rounded-[0.75rem] border border-slate-300 px-4 py-3 text-slate-900;
+}
+
+.button {
+  @apply w-full rounded-full bg-emerald-700 text-white font-bold py-4 px-6 transition hover:bg-emerald-800 disabled:opacity-70 disabled:cursor-not-allowed;
+}
+
+.amountCard {
+  @apply bg-emerald-50 border border-emerald-200 rounded-[1.125rem] p-4 my-4;
+}
+
+.error {
+  @apply text-red-600 font-semibold;
+}
