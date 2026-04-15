@@ -42,6 +42,7 @@ function Navbar() {
           <Link href="/about">{t('nav.about')}</Link>
           <Link href="/awareness">{t('nav.awareness')}</Link>
           <Link href="/fundraiser">{t('nav.fundraiser')}</Link>
+          <Link href="/products">Products</Link>
           <Link href="/videos">{t('nav.videos')}</Link>
           <Link href="/contact">{t('nav.contact')}</Link>
           
@@ -69,6 +70,7 @@ function Navbar() {
           <Link href="/about" onClick={() => setIsMenuOpen(false)}>{t('nav.about')}</Link>
           <Link href="/awareness" onClick={() => setIsMenuOpen(false)}>{t('nav.awareness')}</Link>
           <Link href="/fundraiser" onClick={() => setIsMenuOpen(false)}>{t('nav.fundraiser')}</Link>
+          <Link href="/products" onClick={() => setIsMenuOpen(false)}>Products</Link>
           <Link href="/videos" onClick={() => setIsMenuOpen(false)}>{t('nav.videos')}</Link>
           <Link href="/contact" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
           <select 
