@@ -150,6 +150,11 @@
   height: 50px;
   margin: 0 auto 1rem;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 .email-icon { background: #e74c3c; }
@@ -157,6 +162,55 @@
 .social-icon { background: #e74c3c; }
 
 @media (max-width: 768px) {
-  .location-content { flex-direction: column; }
-  .contact-grid { grid-template-columns: 1fr; }
+  .contact-hero {
+    height: 30vh;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .location-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .location-details {
+    margin-bottom: 2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-form-section {
+    padding: 3rem 0;
+  }
+
+  .location-section {
+    padding: 3rem 0;
+  }
+
+  .additional-contact {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .navbar {
+    padding: 10px 20px;
+  }
 }

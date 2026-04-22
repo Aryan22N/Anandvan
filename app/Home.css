@@ -424,3 +424,119 @@
     transform: translateY(0);
   }
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  
+  .areas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+
+  .mission {
+    padding: 50px 0;
+  }
+
+  .mission-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .mission-text {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .quote {
+    font-size: 1.4rem;
+  }
+
+  .impact, .focus-areas, .testimonials, .get-involved {
+    padding: 50px 0;
+  }
+
+  .stat-item {
+    padding: 30px 15px;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .areas-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .area-card {
+    padding: 30px 20px;
+  }
+
+  .testimonial {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+
+  .testimonial p {
+    font-size: 1.1rem;
+  }
+
+  .involvement-options {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .involvement-card {
+    padding: 30px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+}

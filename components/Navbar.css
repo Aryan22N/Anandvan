@@ -80,24 +80,28 @@
 }
 
 .mobile-menu {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 20px;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   position: absolute;
   top: 100%;
   right: 0;
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
   text-align: center;
-  transition: max-height 0.5s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   max-height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .mobile-menu.show {
-  display: flex;
-  max-height: 500px;
+  max-height: 100vh;
+  padding: 30px 0;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .mobile-menu a {

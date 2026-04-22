@@ -193,17 +193,23 @@ export default function Contact() {
           <h2 className="section-title">{t('contact.more_ways_title')}</h2>
           <div className="contact-grid">
             <div className="contact-card">
-              <div className="contact-icon email-icon"></div>
+              <div className="contact-icon email-icon">
+                <i className="fas fa-envelope"></i>
+              </div>
               <h3>{t('contact.email_us')}</h3>
               <p>contact@anandwan.org</p>
             </div>
             <div className="contact-card">
-              <div className="contact-icon phone-icon"></div>
+              <div className="contact-icon phone-icon">
+                <i className="fas fa-phone"></i>
+              </div>
               <h3>{t('contact.call_us')}</h3>
               <p>+91 7176 282 034</p>
             </div>
             <div className="contact-card">
-              <div className="contact-icon social-icon"></div>
+              <div className="contact-icon social-icon">
+                <i className="fas fa-share-nodes"></i>
+              </div>
               <h3>{t('contact.follow_us')}</h3>
               <p>
                 <a href="https://facebook.com/anandwan" target="_blank" rel="noopener noreferrer">Facebook</a> | 
