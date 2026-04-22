@@ -7,6 +7,11 @@ import './Footer.css';
 function Footer() {
   const [email, setEmail] = useState('');
   const [subscribeStatus, setSubscribeStatus] = useState('');
+  const [year, setYear] = useState(2024);
+
+  React.useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -70,8 +75,9 @@ function Footer() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              suppressHydrationWarning
             />
-            <button type="submit">Subscribe</button>
+            <button type="submit" suppressHydrationWarning>Subscribe</button>
           </form>
           {subscribeStatus && (
             <p className="subscribe-status">{subscribeStatus}</p>
@@ -79,7 +85,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Anandwan. All rights reserved.</p>
+        <p>&copy; {year} Anandwan. All rights reserved.</p>
       </div>
     </footer>
   );

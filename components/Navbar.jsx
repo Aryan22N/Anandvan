@@ -50,6 +50,7 @@ function Navbar() {
             className="language-switcher" 
             value={i18n.language} 
             onChange={changeLanguage}
+            suppressHydrationWarning
             style={{ marginLeft: '1rem', padding: '0.3rem', borderRadius: '4px', background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)' }}
           >
             <option value="en" style={{ color: '#000' }}>English</option>
@@ -77,6 +78,7 @@ function Navbar() {
             className="language-switcher-mobile" 
             value={i18n.language} 
             onChange={(e) => { changeLanguage(e); setIsMenuOpen(false); }}
+            suppressHydrationWarning
             style={{ margin: '1rem', padding: '0.5rem', width: '90%', fontSize: '1.2rem'}}
           >
             <option value="en">English</option>
