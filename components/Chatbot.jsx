@@ -105,7 +105,7 @@ function Chatbot() {
         <div className="chatbot-window">
           <div className="chatbot-header">
             <h3><FaRobot /> Anandwan Assistant</h3>
-            <button className="chatbot-close" onClick={() => setIsOpen(false)}>
+            <button className="chatbot-close" onClick={() => setIsOpen(false)} suppressHydrationWarning>
               <FaTimes />
             </button>
           </div>
@@ -152,8 +152,9 @@ function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about Anandwan or funding..."
               disabled={isLoading}
+              suppressHydrationWarning
             />
-            <button type="submit" disabled={!input.trim() || isLoading}>
+            <button type="submit" disabled={!input.trim() || isLoading} suppressHydrationWarning>
               <FaPaperPlane size={14} />
             </button>
           </form>
@@ -161,7 +162,7 @@ function Chatbot() {
       )}
 
       {!isOpen && (
-        <button className="chatbot-button" onClick={() => setIsOpen(true)}>
+        <button className="chatbot-button" onClick={() => setIsOpen(true)} suppressHydrationWarning>
           <FaCommentDots />
         </button>
       )}

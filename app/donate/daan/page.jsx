@@ -38,9 +38,8 @@ function RingTimer({ timeLeft, accent }) {
   const progress = timeLeft / QR_DURATION;
   const offset = C * (1 - progress);
   const isLow = timeLeft <= 30;
-  const color = isLow ? '#ef4444' : '#ffc84f';
-  const trackColor = isLow ? 'rgba(239,68,68,0.15)' : 'rgba(255,200,79,0.12)';
-  const glowColor = isLow ? 'rgba(239,68,68,0.5)' : 'rgba(255,200,79,0.5)';
+  const color = isLow ? '#ef4444' : '#2d6a4f';
+  const trackColor = isLow ? 'rgba(239,68,68,0.12)' : 'rgba(45,106,79,0.12)';
 
   return (
     <div className="qr-ring-timer">
@@ -143,6 +142,7 @@ function DaanCard({ daan, onOpen }) {
         <button
           className="daan-card-btn"
           onClick={(e) => { e.stopPropagation(); onOpen(daan); }}
+          suppressHydrationWarning
         >
           Contribute Now <span className="daan-card-btn-arrow">→</span>
         </button>

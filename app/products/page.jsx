@@ -6,108 +6,129 @@ import React, { useState, useEffect, useCallback } from "react";
 const ALL_PRODUCTS = [
   {
     id: 1,
-    name: "Handloom Kurta",
+    name: "Shopping Bag",
+    images: [
+      "/products/shop_bag1.png",
+      "/products/shop_bag.png",
+    ],
     description:
-      "Beautifully hand-woven by skilled artisans at Anandwan. Soft, breathable fabric perfect for everyday wear. Available in sizes S–XXL.",
+      "Sturdy and stylish shopping bag hand-crafted by artisans at Anandwan. Spacious, eco-friendly, and built to last.",
     longDescription:
-      "Each Handloom Kurta is a labour of love, woven on traditional looms by artisans who have learnt the craft within the Anandwan community. The fabric is 100% natural cotton, dyed using eco-friendly colours. No two pieces are identical — every kurta carries the subtle individual touch of the weaver. Machine washable, durable, and extremely comfortable in all seasons.",
+      "This shopping bag is lovingly handcrafted by skilled artisans at Anandwan using durable, eco-friendly materials. The bag features strong stitching, comfortable handles, and a roomy interior perfect for daily errands or groceries. Each bag is unique and carries the pride of the Anandwan community. A purposeful purchase — durable for you, meaningful for them.",
     price: 850,
     originalPrice: 1050,
-    category: "Textiles & Clothing",
+    category: "Handicrafts",
     sku: "ANW-TC-001",
     inStock: true,
-    highlights: ["100% natural cotton", "Hand-woven on traditional looms", "Eco-friendly dyes", "Sizes S – XXL"],
+    highlights: ["Handcrafted by Anandwan artisans", "Eco-friendly & durable material", "Spacious interior", "Comfortable handles"],
     reviews: [
-      { id: 1, name: "Priya Sharma", rating: 5, date: "12 Mar 2025", comment: "Absolutely beautiful quality! Feels premium and fits perfectly. Love that it supports such a great cause." },
-      { id: 2, name: "Rahul Desai",  rating: 4, date: "28 Feb 2025", comment: "Very comfortable and well-made. The weave is tight and durable. Slightly longer delivery but worth the wait." },
-      { id: 3, name: "Meena Joshi",  rating: 5, date: "5 Jan 2025",  comment: "Gifted this to my father and he wears it every day. Excellent craftsmanship from the Anandwan artisans." },
+      { id: 1, name: "Priya Sharma", rating: 5, date: "12 Mar 2025", comment: "Absolutely love this bag! Sturdy, spacious, and great quality. Proud to support Anandwan with every purchase." },
+      { id: 2, name: "Rahul Desai", rating: 4, date: "28 Feb 2025", comment: "Very well made and holds a lot. A perfect everyday bag that also supports a good cause." },
+      { id: 3, name: "Meena Joshi", rating: 5, date: "5 Jan 2025", comment: "Gifted this to my sister and she uses it every day. Excellent craftsmanship from the Anandwan artisans." },
     ],
   },
   {
     id: 2,
     name: "Handmade Shawl",
+    images: [
+      "/products/shawl.png",
+      "/products/shawl1.png",
+    ],
     description:
-      "Warm and elegant shawl crafted using traditional weaving techniques. Each piece carries a unique artisan touch.",
+      "Warm and elegant shawl hand-woven by skilled artisans at Anandwan. A perfect blend of comfort and craftsmanship.",
     longDescription:
-      "Woven with extra-fine yarn on handlooms, the Anandwan shawl is both lightweight and warm. The intricate border patterns are a signature of the weavers trained at the community. Perfect for gifting or personal use. Each shawl takes approximately 3–4 hours of skilled work to complete.",
-    price: 1200,
-    originalPrice: 1400,
+      "Woven with extra-fine yarn on traditional handlooms, the Anandwan shawl is both lightweight and beautifully warm. The intricate border patterns are a signature style of weavers trained within the community. Soft against the skin and versatile for any season, it makes an ideal personal accessory or thoughtful gift. Each shawl takes approximately 3–4 hours of dedicated skilled work to complete.",
+    price: 630,
+    originalPrice: 900,
     category: "Textiles & Clothing",
     sku: "ANW-TC-002",
     inStock: true,
-    highlights: ["Fine-yarn weave", "Unique border patterns", "Warm yet lightweight", "Perfect gift item"],
+    highlights: ["Extra-fine yarn weave", "Unique handcrafted border patterns", "Warm yet lightweight", "Perfect as a gift"],
     reviews: [
       { id: 1, name: "Sunita Patel", rating: 5, date: "20 Mar 2025", comment: "Gifted to my mother-in-law and she was overjoyed. The weave is exquisite — clearly handmade with care." },
-      { id: 2, name: "Vikram Nair",  rating: 4, date: "14 Feb 2025", comment: "Good quality shawl, very warm. The colours are rich and the texture feels premium." },
+      { id: 2, name: "Vikram Nair", rating: 4, date: "14 Feb 2025", comment: "Good quality shawl, very warm. The colours are rich and the texture feels premium." },
     ],
   },
   {
     id: 3,
-    name: "Pure Cotton Bed Sheet",
+    name: "Folding Pouch",
     description:
-      "100% cotton bed sheet woven at Anandwan workshops. Available in natural and hand-dyed variants.",
+      "Compact and foldable pouch handcrafted at Anandwan. Handy for travel, storage, or everyday carry.",
     longDescription:
-      "Woven on large handlooms in Anandwan's textile workshop, this bed sheet is made from unbleached, pure cotton. The fabric softens further with every wash, making it an heirloom-quality item. Standard double-bed size (90\" × 100\"). Also available in natural off-white and several earthy hand-dyed tones.",
-    price: 650,
-    originalPrice: 800,
-    category: "Home Textiles",
+      "This clever folding pouch is neatly stitched by artisans at Anandwan using sturdy fabric. When folded, it fits neatly in a pocket or purse; when open, it provides ample space for essentials. Ideal for toiletries, stationery, chargers, or small personal items. Available in earthy, hand-dyed colour tones. Durable, functional, and sustainably made.",
+    price: 160,
+    originalPrice: 220,
+    category: "Handicrafts",
     sku: "ANW-HT-001",
     inStock: true,
-    highlights: ["Pure unbleached cotton", "Softens with every wash", "Double-bed size (90\"×100\")", "Hand-dyed colour options"],
+    images: [
+      "/products/pouch.png",
+      "/products/pouch1.png",
+    ],
+    highlights: ["Foldable & compact design", "Sturdy hand-stitched fabric", "Multiple colour options", "Perfect for travel or daily use"],
     reviews: [
-      { id: 1, name: "Anjali Mehta", rating: 5, date: "10 Apr 2025", comment: "Incredibly soft and breathable. Far better than synthetic sheets I used before. Highly recommend." },
-      { id: 2, name: "Deepak Rao",   rating: 4, date: "22 Mar 2025", comment: "Good quality, gets softer after washing. Packaging was eco-friendly too — a nice touch." },
+      { id: 1, name: "Anjali Mehta", rating: 5, date: "10 Apr 2025", comment: "Super handy little pouch! I use it for my chargers when travelling. Well-made and cute." },
+      { id: 2, name: "Deepak Rao", rating: 4, date: "22 Mar 2025", comment: "Good quality and folds up nicely. Packaging was eco-friendly too — a nice touch." },
     ],
   },
   {
     id: 4,
-    name: "Hand-Stitched Quilt",
+    name: "Purse",
     description:
-      "A cozy quilt lovingly hand-stitched by residents. Combines warmth with artisanal craftsmanship.",
+      "A charming handcrafted purse made by artisans at Anandwan. Compact, stylish, and built with purpose.",
     longDescription:
-      "Each quilt is hand-stitched by residents at Anandwan, filled with natural cotton batting. The intricate stitching patterns are inspired by traditional Vidarbha folk art. Size: approximately 60\" × 80\" — ideal for a single or double bed. The outer fabric is durable khadi cotton, while the inner batting provides excellent insulation.",
-    price: 1500,
-    originalPrice: 1800,
-    category: "Home Textiles",
+      "This handcrafted purse is carefully stitched by residents at Anandwan using quality fabric and traditional techniques. Compact enough for daily essentials — cards, cash, and keys — yet beautifully detailed in finish. The intricate stitching reflects the skill and patience of the artisans behind it. A meaningful accessory that directly supports the Anandwan community.",
+    price: 125,
+    originalPrice: 300,
+    category: "Handicrafts",
     sku: "ANW-HT-002",
     inStock: false,
-    highlights: ["Khadi cotton outer fabric", "Natural cotton batting", "Folk-art stitch patterns", "60\"×80\" size"],
+    images: [
+      "/products/purse.png",
+    ],
+    highlights: ["Hand-stitched by Anandwan artisans", "Compact & stylish design", "Quality fabric & finish", "Supports community rehabilitation"],
     reviews: [
-      { id: 1, name: "Kavita Kulkarni", rating: 5, date: "8 Feb 2025", comment: "This is truly a work of art. The stitching is so detailed and it keeps me very warm in winter." },
+      { id: 1, name: "Kavita Kulkarni", rating: 5, date: "8 Feb 2025", comment: "Beautiful little purse! The stitching detail is incredible and it feels premium. Would love to buy more." },
     ],
   },
   {
     id: 5,
-    name: "Banana Fiber Wall Hanging",
+    name: "School Bag",
     description:
-      "Eco-friendly wall art crafted from banana fibers. A unique blend of sustainability and artistic expression.",
+      "Durable and spacious school bag handcrafted at Anandwan. Designed to support students with comfort and quality.",
     longDescription:
-      "Crafted from natural banana plant fibers harvested sustainably, this wall hanging is a unique piece of green art. The artisans at Anandwan weave the fiber into intricate patterns representing nature and community life. Each piece is unique in pattern, approximately 18\" × 24\". Comes with a natural wood dowel for easy hanging.",
+      "Built with care by artisans at Anandwan, this school bag is crafted from sturdy, long-lasting material. It features multiple compartments for books, stationery, and a water bottle — everything a student needs. The padded straps ensure comfortable wear throughout the day. A practical, purposeful bag that also represents the self-reliance and skill of the Anandwan community.",
     price: 750,
     originalPrice: 900,
     category: "Handicrafts",
     sku: "ANW-HC-001",
     inStock: true,
-    highlights: ["Natural banana fiber", "Eco-friendly & sustainable", "Unique pattern per piece", "Wood dowel included"],
+    images: [
+      "/products/school_bag.png",
+    ],
+    highlights: ["Multiple compartments", "Padded shoulder straps", "Durable & long-lasting material", "Handcrafted by Anandwan artisans"],
     reviews: [
-      { id: 1, name: "Rohan Pawar",   rating: 5, date: "3 Apr 2025",  comment: "An absolutely stunning piece. It's become the talking point of my living room. Zero regrets." },
-      { id: 2, name: "Nisha Goswami", rating: 5, date: "18 Mar 2025", comment: "Bought two — one for home and one as a gift. Both are beautiful and arrived well-packed." },
-      { id: 3, name: "Arjun Singh",   rating: 4, date: "2 Feb 2025",  comment: "Very unique and well-crafted. Delivery took a little longer than expected but the product is worth it." },
+      { id: 1, name: "Rohan Pawar", rating: 5, date: "3 Apr 2025", comment: "Bought for my son and he loves it! Very sturdy and fits all his school books. Great quality." },
+      { id: 2, name: "Nisha Goswami", rating: 5, date: "18 Mar 2025", comment: "Excellent bag — bought two for both my kids. Both are well-made and arrived nicely packed." },
+      { id: 3, name: "Arjun Singh", rating: 4, date: "2 Feb 2025", comment: "Very durable and well-crafted. Delivery took a little longer than expected but the product is worth it." },
     ],
   },
   {
     id: 6,
     name: "Clay Pot Set",
     description:
-      "Set of three hand-crafted clay pots ideal for home décor or indoor plants. Naturally finished with earthy textures.",
+      "Set of hand-thrown clay pots crafted by pottery artisans at Anandwan. Ideal for plants, décor, or gifting.",
     longDescription:
-      "Wheel-thrown and hand-finished by pottery artisans at Anandwan, this set of three clay pots comes in graduating sizes (small, medium, large). The natural clay finish highlights the earthy beauty of the craft. Suitable for succulents, herbs, or as decorative objects. Each pot has a drainage hole and comes with a matching clay saucer.",
+      "Wheel-thrown and hand-finished by pottery artisans at Anandwan, each clay pot showcases the natural earthy beauty of the craft. The unglazed natural finish keeps the pots breathable — perfect for succulents and herbs. Each pot has a drainage hole and comes with a matching saucer. A grounding, beautiful addition to any home that carries the story of Anandwan artistry.",
     price: 480,
     originalPrice: 580,
     category: "Handicrafts",
     sku: "ANW-HC-002",
     inStock: true,
-    highlights: ["Set of 3 graduating sizes", "Natural clay finish", "Drainage hole + saucer", "Suitable for plants or décor"],
+    images: [
+      "/products/pot.png",
+    ],
+    highlights: ["Hand-thrown on pottery wheel", "Natural unglazed clay finish", "Drainage hole + saucer included", "Ideal for plants or home décor"],
     reviews: [
       { id: 1, name: "Smita Deshpande", rating: 4, date: "7 Apr 2025", comment: "Lovely earthy texture. My succulents look perfect in these pots. Good quality for the price." },
     ],
@@ -124,15 +145,23 @@ const ALL_PRODUCTS = [
     category: "Agricultural Products",
     sku: "ANW-AG-001",
     inStock: true,
+    images: [
+      "/products/rice.png",
+
+    ],
     highlights: ["Pesticide-free heirloom variety", "Grown on Anandwan farms", "Sun-dried & hand-cleaned", "Recyclable packaging"],
     reviews: [
-      { id: 1, name: "Suresh Kulkarni", rating: 5, date: "5 Apr 2025",  comment: "Excellent quality rice — cooks beautifully and tastes so much better than supermarket brands." },
-      { id: 2, name: "Latha Rao",        rating: 5, date: "20 Mar 2025", comment: "Bought a second pack already. Wholesome and clean — you can taste the difference with organic farming." },
+      { id: 1, name: "Suresh Kulkarni", rating: 5, date: "5 Apr 2025", comment: "Excellent quality rice — cooks beautifully and tastes so much better than supermarket brands." },
+      { id: 2, name: "Latha Rao", rating: 5, date: "20 Mar 2025", comment: "Bought a second pack already. Wholesome and clean — you can taste the difference with organic farming." },
     ],
   },
   {
     id: 8,
     name: "Wild Forest Honey (500 g)",
+    images: [
+      "/products/honey.png",
+
+    ],
     description:
       "Pure raw honey collected from Anandwan's forest beehives. Unprocessed and rich in natural goodness.",
     longDescription:
@@ -145,12 +174,16 @@ const ALL_PRODUCTS = [
     highlights: ["Raw & unfiltered", "Zero additives or heat treatment", "Natural enzymes preserved", "Forest multi-floral variety"],
     reviews: [
       { id: 1, name: "Geeta Bhosale", rating: 5, date: "1 Apr 2025", comment: "Thick, rich, and absolutely delicious. You can immediately taste the difference from store honey." },
-      { id: 2, name: "Aditya Wagh",   rating: 4, date: "12 Mar 2025", comment: "Very authentic wild honey. Slightly crystallised on arrival which is normal for raw honey — good sign!" },
+      { id: 2, name: "Aditya Wagh", rating: 4, date: "12 Mar 2025", comment: "Very authentic wild honey. Slightly crystallised on arrival which is normal for raw honey — good sign!" },
     ],
   },
   {
     id: 9,
     name: "Anandwan – A Story of Hope",
+    images: [
+      "/products/book.png",
+
+    ],
     description:
       "The inspiring story of Baba Amte and the founding of Anandwan. Essential reading for believers in human potential.",
     longDescription:
@@ -163,28 +196,11 @@ const ALL_PRODUCTS = [
     highlights: ["English & Marathi editions available", "Softcover, 240 pages", "Foreword by Dr. Vikas Amte", "International award-winning narrative"],
     reviews: [
       { id: 1, name: "Prof. Vasant Kale", rating: 5, date: "25 Mar 2025", comment: "One of the most moving books I have ever read. Baba Amte's story changed how I see service and sacrifice." },
-      { id: 2, name: "Ritu Sharma",       rating: 5, date: "10 Feb 2025", comment: "Bought for my students. They were all deeply impacted. Highly recommend for young people especially." },
-      { id: 3, name: "Mohan Joshi",       rating: 4, date: "28 Jan 2025", comment: "Excellent narrative. Could have gone deeper into the later years, but overall a wonderful tribute." },
+      { id: 2, name: "Ritu Sharma", rating: 5, date: "10 Feb 2025", comment: "Bought for my students. They were all deeply impacted. Highly recommend for young people especially." },
+      { id: 3, name: "Mohan Joshi", rating: 4, date: "28 Jan 2025", comment: "Excellent narrative. Could have gone deeper into the later years, but overall a wonderful tribute." },
     ],
   },
-  {
-    id: 10,
-    name: "Self-Reliance: The Anandwan Way",
-    description:
-      "A practical guide drawing on decades of community living and rehabilitation at Anandwan.",
-    longDescription:
-      "Written by the Anandwan editorial team, this book distils seven decades of community wisdom into practical principles of sustainable living, cooperative economics, and inclusive rehabilitation. Each chapter is grounded in real stories from Anandwan residents. An invaluable resource for social workers, community organisers, students of development studies, and anyone seeking an alternative model for dignified living.",
-    price: 225,
-    originalPrice: 280,
-    category: "Books",
-    sku: "ANW-BK-002",
-    inStock: true,
-    highlights: ["Practical & story-driven", "English edition, 210 pages", "Resource guide included", "Ideal for NGO workers & students"],
-    reviews: [
-      { id: 1, name: "Dr. Anand Chitnis", rating: 5, date: "30 Mar 2025", comment: "A must-read for every development practitioner. Grounded, practical, and deeply humane." },
-      { id: 2, name: "Swati Desai",       rating: 4, date: "15 Feb 2025", comment: "Very insightful. Changed how I think about community building and self-reliance in my own organisation." },
-    ],
-  },
+
 ];
 
 const CATEGORIES = [
@@ -197,11 +213,11 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_BADGE = {
-  "Textiles & Clothing":  { bg: "#fff3e0", color: "#e65100" },
-  "Home Textiles":        { bg: "#e3f2fd", color: "#1565c0" },
-  Handicrafts:            { bg: "#fce4ec", color: "#c62828" },
-  "Agricultural Products":{ bg: "#e8f5e9", color: "#1a472a" },
-  Books:                  { bg: "#ede7f6", color: "#4527a0" },
+  "Textiles & Clothing": { bg: "#fff3e0", color: "#e65100" },
+  "Home Textiles": { bg: "#e3f2fd", color: "#1565c0" },
+  Handicrafts: { bg: "#fce4ec", color: "#c62828" },
+  "Agricultural Products": { bg: "#e8f5e9", color: "#1a472a" },
+  Books: { bg: "#ede7f6", color: "#4527a0" },
 };
 
 // ─── Star Rating Helper ────────────────────────────────────────────────────────
@@ -224,7 +240,9 @@ function avgRating(reviews) {
 function ProductModal({ product, onClose }) {
   const badge = CATEGORY_BADGE[product.category] || { bg: "#f5f5f5", color: "#333" };
   const [qty, setQty] = useState(1);
+  const [activeImg, setActiveImg] = useState(0);
   const avg = avgRating(product.reviews);
+  const images = product.images || [];
 
   // Close on Escape key
   useEffect(() => {
@@ -299,44 +317,54 @@ function ProductModal({ product, onClose }) {
             alignItems: "center",
             justifyContent: "center",
             minHeight: "380px",
-            padding: "40px 30px",
-            gap: "16px",
+            padding: "30px 24px",
+            gap: "14px",
           }}>
-            {/* Main image placeholder */}
+            {/* Main image */}
             <div style={{
               width: "100%",
               aspectRatio: "4/3",
-              background: "rgba(255,255,255,0.6)",
               borderRadius: "12px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#aaa",
-              border: "2px dashed #c8e6c9",
+              overflow: "hidden",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              background: "#fff",
             }}>
-              {/* Image will be added here later */}
-              <span style={{ fontSize: "3rem", marginBottom: "10px" }}>📦</span>
-              <span style={{ fontSize: "0.8rem", fontStyle: "italic" }}>Photo coming soon</span>
+              {images.length > 0 ? (
+                <img
+                  src={images[activeImg]}
+                  alt={product.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              ) : (
+                <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "#aaa", flexDirection: "column", gap: "8px", background: "rgba(255,255,255,0.6)", border: "2px dashed #c8e6c9" }}>
+                  <span style={{ fontSize: "3rem" }}>📦</span>
+                  <span style={{ fontSize: "0.8rem", fontStyle: "italic" }}>Photo coming soon</span>
+                </div>
+              )}
             </div>
 
-            {/* Thumbnail strip */}
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
-              {[1, 2, 3].map(n => (
-                <div key={n} style={{
-                  width: "60px", height: "60px",
-                  background: "rgba(255,255,255,0.5)",
-                  borderRadius: "8px",
-                  border: n === 1 ? "2px solid #1a472a" : "2px solid transparent",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#bbb", fontSize: "0.65rem",
-                  cursor: "pointer",
-                }}>
-                  {/* Thumbnail will be added here later */}
-                  img {n}
-                </div>
-              ))}
-            </div>
+            {/* Thumbnail strip — only if 2+ images */}
+            {images.length > 1 && (
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
+                {images.map((src, i) => (
+                  <div
+                    key={i}
+                    onClick={() => setActiveImg(i)}
+                    style={{
+                      width: "60px", height: "60px",
+                      borderRadius: "8px",
+                      overflow: "hidden",
+                      border: i === activeImg ? "2px solid #1a472a" : "2px solid transparent",
+                      cursor: "pointer",
+                      boxShadow: i === activeImg ? "0 0 0 2px rgba(26,71,42,0.2)" : "none",
+                      transition: "border 0.2s",
+                    }}
+                  >
+                    <img src={src} alt={`View ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* RIGHT — Product info */}
@@ -510,10 +538,17 @@ function ProductCard({ product, onViewDetails }) {
         e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.07)";
       }}
     >
-      {/* Image placeholder */}
+      {/* Image */}
       <div style={imagePlaceholderStyle}>
-        {/* Image will be added here later */}
-        <span style={{ opacity: 0.35, fontSize: "0.85rem", fontStyle: "italic" }}>📦 Photo coming soon</span>
+        {product.images && product.images.length > 0 ? (
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        ) : (
+          <span style={{ opacity: 0.35, fontSize: "0.85rem", fontStyle: "italic" }}>📦 Photo coming soon</span>
+        )}
       </div>
 
       <div style={cardBodyStyle}>
@@ -549,6 +584,7 @@ function ProductCard({ product, onViewDetails }) {
             onClick={() => onViewDetails(product)}
             onMouseEnter={e => { e.currentTarget.style.background = "#c0392b"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "#e74c3c"; }}
+            suppressHydrationWarning
           >
             View Details
           </button>
@@ -611,6 +647,7 @@ export default function ProductsPage() {
                   }}
                   onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = "#1a472a"; e.currentTarget.style.color = "#1a472a"; } }}
                   onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = "#ddd"; e.currentTarget.style.color = "#555"; } }}
+                  suppressHydrationWarning
                 >
                   {cat}
                 </button>
