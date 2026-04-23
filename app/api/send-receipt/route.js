@@ -10,16 +10,25 @@ const supabase = createClient(
 
 // ── Mailer ────────────────────────────────────────────────────────────────────
 function createTransporter() {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    throw new Error('Email credentials are missing in environment variables.');
+  }
+
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false
+    }
   });
 }
+
 
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

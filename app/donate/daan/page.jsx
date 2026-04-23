@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabaseClient';
 import './DaanSection.css';
 
 // ── UPI Config ───────────────────────────────────────────────────────────────
-const UPI_VPA  = process.env.NEXT_PUBLIC_UPI_VPA  || 'anandwan@sbi';
+const UPI_VPA = process.env.NEXT_PUBLIC_UPI_VPA || 'anandwan@sbi';
 const UPI_NAME = process.env.NEXT_PUBLIC_UPI_NAME || 'Anandwan Foundation';
 
 const QR_DURATION = 120; // seconds
@@ -154,12 +154,13 @@ function DaanCard({ daan, onOpen }) {
 // ── DaanModal ────────────────────────────────────────────────────────────────
 function DaanModal({ daan, onClose }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', amount: '' });
-  const [step, setStep]       = useState(1);   // 1 = form  |  2 = QR  |  3 = success
+  const [step, setStep] = useState(1);   // 1 = form  |  2 = QR  |  3 = success
   const [loading, setLoading] = useState(false);
   const [qrLoaded, setQrLoaded] = useState(false);
   const [timeLeft, setTimeLeft] = useState(QR_DURATION);
-  const [expired, setExpired]   = useState(false);
+  const [expired, setExpired] = useState(false);
   const [emailStatus, setEmailStatus]   = useState('idle'); // idle | sending | sent | error
+  const [emailError, setEmailError]     = useState('');
   const [donationId, setDonationId]     = useState(null);   // Supabase row ID
   const [showCloseWarning, setShowCloseWarning] = useState(false);
   const timerRef = useRef(null);
@@ -167,7 +168,7 @@ function DaanModal({ daan, onClose }) {
   // Build UPI strings whenever form.amount changes
   const upiNote = `Donation - ${daan.title}`;
   const upiLink = form.amount ? buildUpiLink(Number(form.amount), upiNote) : '';
-  const qrUrl   = upiLink ? buildQrUrl(upiLink) : '';
+  const qrUrl = upiLink ? buildQrUrl(upiLink) : '';
 
   // ── Countdown timer (runs only in step 2) ──
   useEffect(() => {
@@ -212,13 +213,13 @@ function DaanModal({ daan, onClose }) {
     setLoading(true);
     try {
       const { data, error } = await supabase.from('donations').insert([{
-        name:     form.name,
-        email:    form.email,
-        phone:    form.phone,
-        amount:   Number(form.amount),
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        amount: Number(form.amount),
         category: daan.title,
-        message:  form.message,
-        status:   'pending',   // will be updated to 'paid' on confirmation
+        message: form.message,
+        status: 'pending',   // will be updated to 'paid' on confirmation
       }]).select('id');
       if (error) {
         console.error('Supabase error (non-blocking):', error);
@@ -274,22 +275,23 @@ function DaanModal({ daan, onClose }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name:       form.name,
-          email:      form.email,
-          phone:      form.phone,
-          amount:     form.amount,
-          category:   daan.title,
-          hindi:      daan.hindi,
-          message:    form.message,
-          upiVpa:     UPI_VPA,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          amount: form.amount,
+          category: daan.title,
+          hindi: daan.hindi,
+          message: form.message,
+          upiVpa: UPI_VPA,
           donationId: donationId,  // pass ID so API can fetch exact record
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed');
+      if (!res.ok) throw new Error(data.details || data.error || 'Failed');
       setEmailStatus('sent');
     } catch (err) {
       console.error('Receipt email error:', err);
+      setEmailError(err.message);
       setEmailStatus('error');
     }
   };
@@ -416,11 +418,10 @@ function DaanModal({ daan, onClose }) {
                 <div className="flex flex-wrap gap-1.5 mb-2">
                   {AMOUNT_PRESETS.map((p) => (
                     <button key={p} type="button" onClick={() => handlePreset(p)}
-                      className={`px-3 py-1 rounded-full text-xs font-bold border transition-all duration-150 ${
-                        Number(form.amount) === p
+                      className={`px-3 py-1 rounded-full text-xs font-bold border transition-all duration-150 ${Number(form.amount) === p
                           ? 'text-white border-transparent'
                           : 'bg-white text-gray-500 border-gray-200 hover:border-gray-400'
-                      }`}
+                        }`}
                       style={Number(form.amount) === p ? { background: daan.btnGradient } : {}}
                     >
                       ₹{p.toLocaleString('en-IN')}
@@ -627,18 +628,18 @@ function DaanModal({ daan, onClose }) {
                 </p>
                 <div className="qr-success-divider" />
                 <div className="qr-success-details">
-                   <div className="qr-detail-item">
-                     <span className="qr-detail-label">Donor</span>
-                     <span className="qr-detail-value">{form.name}</span>
-                   </div>
-                   <div className="qr-detail-item">
-                     <span className="qr-detail-label">Amount</span>
-                     <span className="qr-detail-value">₹{Number(form.amount).toLocaleString('en-IN')}</span>
-                   </div>
-                   <div className="qr-detail-item">
-                     <span className="qr-detail-label">Category</span>
-                     <span className="qr-detail-value">{daan.icon} {daan.title}</span>
-                   </div>
+                  <div className="qr-detail-item">
+                    <span className="qr-detail-label">Donor</span>
+                    <span className="qr-detail-value">{form.name}</span>
+                  </div>
+                  <div className="qr-detail-item">
+                    <span className="qr-detail-label">Amount</span>
+                    <span className="qr-detail-value">₹{Number(form.amount).toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="qr-detail-item">
+                    <span className="qr-detail-label">Category</span>
+                    <span className="qr-detail-value">{daan.icon} {daan.title}</span>
+                  </div>
                 </div>
               </div>
 
@@ -658,7 +659,10 @@ function DaanModal({ daan, onClose }) {
                 {emailStatus === 'error' && (
                   <div className="qr-email-chip qr-email-error">
                     <span className="qr-email-icon">⚠️</span>
-                    <span>Email couldn't be sent — please contact us directly.</span>
+                    <div style={{ textAlign: 'left' }}>
+                      <p style={{ margin: 0 }}>Email failed: {emailError}</p>
+                      <p style={{ margin: '2px 0 0 0', fontSize: '0.65rem', opacity: 0.8 }}>Please contact us directly for the receipt.</p>
+                    </div>
                   </div>
                 )}
               </div>
