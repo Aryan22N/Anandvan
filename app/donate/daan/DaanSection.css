@@ -802,19 +802,20 @@
 .qr-success-step {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border-radius: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 28px;
   overflow: hidden;
-  animation: successFadeIn 0.4s ease-out;
+  animation: successFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
 @keyframes successFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .qr-success-topbar {
-  height: 5px;
+  height: 6px;
   width: 100%;
 }
 
@@ -822,43 +823,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 2rem 2rem;
-  gap: 1rem;
+  padding: 3rem 2.5rem 2.5rem;
+  gap: 1.5rem;
   text-align: center;
-  background: #f8fafc;
 }
 
 /* Animated check circle */
 .qr-success-circle {
-  width: 84px;
-  height: 84px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 3px solid;
+  border: 4px solid;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: circleGrow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  background: #f0fdf4;
+  background: #fff;
+  position: relative;
+  animation: circleBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-@keyframes circleGrow {
-  from { transform: scale(0); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+@keyframes circleBounce {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .qr-success-check {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   font-weight: 900;
-  animation: checkAppear 0.3s ease 0.3s both;
+  line-height: 1;
 }
 
-@keyframes checkAppear {
-  from { opacity: 0; transform: scale(0.5); }
-  to   { opacity: 1; transform: scale(1); }
+.qr-success-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .qr-success-title {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 800;
   color: #1a202c;
   margin: 0;
@@ -866,27 +869,68 @@
 }
 
 .qr-success-hindi {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: #a0aec0;
   text-transform: uppercase;
-  margin: -0.5rem 0 0 0;
+  margin: 0;
+}
+
+/* Success Card */
+.qr-success-card {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #edf2f7;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .qr-success-msg {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   color: #4a5568;
-  line-height: 1.65;
-  max-width: 320px;
-  margin: 0;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
 }
 
 .qr-success-msg strong { color: #1a202c; }
 
+.qr-success-divider {
+  height: 1px;
+  background: #edf2f7;
+  margin-bottom: 1.25rem;
+}
+
+.qr-success-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.qr-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qr-detail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.qr-detail-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
 .qr-success-amount {
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Email status chips */
@@ -895,91 +939,80 @@
 .qr-email-chip {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1rem;
-  border-radius: 10px;
-  font-size: 0.75rem;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: 600;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .qr-email-sending {
-  background: #edf7f0;
-  border: 1px solid #b7dfc9;
-  color: #2d6a4f;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
 }
 
 .qr-email-spinner {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 2px solid #2d6a4f;
+  border: 2.5px solid #4a5568;
   border-top-color: transparent;
-  animation: spin 0.7s linear infinite;
+  animation: spin 0.8s linear infinite;
   flex-shrink: 0;
 }
 
 .qr-email-sent {
   background: #f0fdf4;
-  border: 1px solid #86efac;
-  color: #166534;
+  border: 1px solid #c6f6d5;
+  color: #276749;
+  box-shadow: 0 2px 10px rgba(39, 103, 73, 0.1);
 }
 
-.qr-email-sent strong { color: #14532d; }
+.qr-email-sent strong { color: #1a202c; }
 
 .qr-email-error {
-  background: #fef2f2;
-  border: 1px solid #fca5a5;
-  color: #991b1b;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  color: #c53030;
 }
 
-/* Donor info row */
-.qr-success-info-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: #fff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.qr-success-info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.75rem;
+.qr-success-footer-msg {
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #4a5568;
-}
-
-.qr-success-info-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #cbd5e0;
+  color: #718096;
+  margin: 0;
+  font-style: italic;
 }
 
 /* Success close button */
 .qr-success-close {
   width: 100%;
-  padding: 0.9rem 1rem;
-  border-radius: 14px;
+  padding: 1rem;
+  border-radius: 16px;
   border: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 800;
   color: #fff;
   cursor: pointer;
-  letter-spacing: 0.2px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.2s, transform 0.15s;
-  margin-top: 0.25rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
 }
-.qr-success-close:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.qr-success-close:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.qr-success-close:active {
+  transform: translateY(0);
+}
+
 
 /* ── Header ── */
 .qr-step-header {

@@ -11,13 +11,16 @@ const supabase = createClient(
 // ── Mailer ────────────────────────────────────────────────────────────────────
 function createTransporter() {
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
   });
 }
+
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function formatDate(dateStr) {
@@ -260,10 +263,16 @@ export async function POST(request) {
     return NextResponse.json({ success: true, transactionId, date: donationDate });
 
   } catch (err) {
-    console.error('Email send error:', err);
+    console.error('CRITICAL: Email send failed:', err);
     return NextResponse.json(
-      { error: 'Failed to send email', details: err.message },
+      { 
+        error: 'Failed to send email', 
+        details: err.message,
+        code: err.code,
+        command: err.command
+      },
       { status: 500 }
     );
   }
 }
+

@@ -605,26 +605,43 @@ function DaanModal({ daan, onClose }) {
         {/* ══ STEP 3 — SUCCESS ═══════════════════════════════════════════════ */}
         {step === 3 && (
           <div className="qr-success-step">
-            {/* Confetti top bar */}
             <div className="qr-success-topbar" style={{ background: daan.btnGradient }} />
 
             <div className="qr-success-body">
-              {/* Animated checkmark */}
               <div className="qr-success-circle" style={{ borderColor: daan.accent, boxShadow: `0 0 40px ${daan.accentGlow}` }}>
-                <span className="qr-success-check">✓</span>
+                <span className="qr-success-check" style={{ color: daan.accent }}>✓</span>
               </div>
 
-              <h2 className="qr-success-title">Dhanyavaad! 🙏</h2>
-              <p className="qr-success-hindi">धन्यवाद</p>
-              <p className="qr-success-msg">
-                Your <strong>{daan.title}</strong> donation of{' '}
-                <span className="qr-success-amount" style={{ color: daan.accent }}>
-                  ₹{Number(form.amount).toLocaleString('en-IN')}
-                </span>{' '}
-                has been recorded. Anandwan thanks you from the heart.
-              </p>
+              <div className="qr-success-header-text">
+                <h2 className="qr-success-title">Dhanyavaad! 🙏</h2>
+                <p className="qr-success-hindi">धन्यवाद</p>
+              </div>
 
-              {/* Email status */}
+              <div className="qr-success-card">
+                <p className="qr-success-msg">
+                  Your <strong>{daan.title}</strong> donation of{' '}
+                  <span className="qr-success-amount" style={{ color: daan.accent }}>
+                    ₹{Number(form.amount).toLocaleString('en-IN')}
+                  </span>{' '}
+                  has been recorded.
+                </p>
+                <div className="qr-success-divider" />
+                <div className="qr-success-details">
+                   <div className="qr-detail-item">
+                     <span className="qr-detail-label">Donor</span>
+                     <span className="qr-detail-value">{form.name}</span>
+                   </div>
+                   <div className="qr-detail-item">
+                     <span className="qr-detail-label">Amount</span>
+                     <span className="qr-detail-value">₹{Number(form.amount).toLocaleString('en-IN')}</span>
+                   </div>
+                   <div className="qr-detail-item">
+                     <span className="qr-detail-label">Category</span>
+                     <span className="qr-detail-value">{daan.icon} {daan.title}</span>
+                   </div>
+                </div>
+              </div>
+
               <div className="qr-email-status">
                 {emailStatus === 'sending' && (
                   <div className="qr-email-chip qr-email-sending">
@@ -634,37 +651,27 @@ function DaanModal({ daan, onClose }) {
                 )}
                 {emailStatus === 'sent' && (
                   <div className="qr-email-chip qr-email-sent">
-                    📧 Receipt sent to <strong>{form.email}</strong>
+                    <span className="qr-email-icon">📧</span>
+                    <span>Receipt sent to <strong>{form.email}</strong></span>
                   </div>
                 )}
                 {emailStatus === 'error' && (
                   <div className="qr-email-chip qr-email-error">
-                    ⚠️ Email couldn't be sent — please contact us directly.
+                    <span className="qr-email-icon">⚠️</span>
+                    <span>Email couldn't be sent — please contact us directly.</span>
                   </div>
                 )}
               </div>
 
-              {/* Donor info strip */}
-              <div className="qr-success-info-row">
-                <div className="qr-success-info-item">
-                  <span>👤</span><span>{form.name}</span>
-                </div>
-                <div className="qr-success-info-dot" />
-                <div className="qr-success-info-item">
-                  <span>💰</span><span>₹{Number(form.amount).toLocaleString('en-IN')}</span>
-                </div>
-                <div className="qr-success-info-dot" />
-                <div className="qr-success-info-item">
-                  <span>{daan.icon}</span><span>{daan.title}</span>
-                </div>
-              </div>
+              <p className="qr-success-footer-msg">Anandwan thanks you from the heart.</p>
 
               <button onClick={onClose} className="qr-success-close" style={{ background: daan.btnGradient }}>
-                Close
+                Done
               </button>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
