@@ -47,28 +47,128 @@ function buildReceiptHtml({ name, amount, date, transactionId, supportEmail, web
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#f4f6f9;font-family:'Inter',Arial,sans-serif;color:#333}
+    body{background:#f4f6f9;font-family:'Inter',Arial,sans-serif;color:#333;-webkit-font-smoothing:antialiased}
     .wrap{max-width:600px;margin:40px auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.09)}
+    /* Header */
     .header{background:linear-gradient(135deg,#1a472a 0%,#2d6a4f 100%);padding:44px 40px 36px;text-align:center}
-    .header h1{color:#fff;font-size:26px;font-weight:800;margin-bottom:6px}
-    .header p{color:rgba(255,255,255,0.65);font-size:14px}
+    .logo-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:8px 20px;margin-bottom:24px}
+    .logo-badge span{font-size:13px;font-weight:700;color:rgba(255,255,255,0.9);letter-spacing:1px;text-transform:uppercase}
+    .check-wrap{width:72px;height:72px;background:rgba(255,200,79,0.15);border:2px solid rgba(255,200,79,0.45);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
+    .header h1{color:#fff;font-size:26px;font-weight:800;letter-spacing:-0.3px;margin-bottom:6px}
+    .header p{color:rgba(255,255,255,0.65);font-size:14px;line-height:1.6}
+    /* Body */
     .body{padding:40px}
+    .greeting{font-size:16px;color:#1a202c;font-weight:600;margin-bottom:10px}
+    .intro{font-size:14px;color:#4a5568;line-height:1.75;margin-bottom:30px}
+    /* Amount card */
     .amount-card{background:linear-gradient(135deg,#1a472a,#2d6a4f);border-radius:16px;padding:28px;text-align:center;margin-bottom:30px}
-    .amount-value{font-size:46px;font-weight:900;color:#ffc84f}
-    .footer{background:#f8fafc;padding:28px 40px;text-align:center;font-size:12px;color:#a0aec0}
+    .amount-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px}
+    .amount-value{font-size:46px;font-weight:900;color:#ffc84f;letter-spacing:-1.5px;line-height:1}
+    .amount-sub{font-size:12px;color:rgba(255,255,255,0.45);margin-top:10px}
+    /* Details table */
+    .section-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a0aec0;margin-bottom:14px}
+    .details-box{background:#f8fafc;border:1px solid #e8edf2;border-radius:14px;overflow:hidden;margin-bottom:28px}
+    .detail-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #edf2f7}
+    .detail-row:last-child{border-bottom:none}
+    .detail-label{font-size:13px;color:#718096;font-weight:500}
+    .detail-value{font-size:13px;color:#1a202c;font-weight:700;text-align:right;max-width:60%}
+    .txn-id{font-family:monospace;font-size:12px;background:#e2e8f0;padding:3px 8px;border-radius:6px;color:#2d3748}
+    /* Impact message */
+    .impact{background:#f0fff4;border:1px solid #c6f6d5;border-radius:14px;padding:22px 24px;margin-bottom:28px}
+    .impact p{font-size:14px;color:#276749;line-height:1.75}
+    /* Note */
+    .note{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px 20px;margin-bottom:28px;font-size:13px;color:#92400e;line-height:1.65}
+    .note strong{color:#78350f}
+    /* Footer */
+    .footer{background:#f8fafc;border-top:1px solid #e8edf2;padding:28px 40px;text-align:center}
+    .footer p{font-size:12px;color:#a0aec0;line-height:1.9}
+    .footer a{color:#2d6a4f;text-decoration:none;font-weight:600}
+    .footer a:hover{text-decoration:underline}
+    .badge-row{display:flex;justify-content:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+    .badge{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:5px 14px;font-size:11px;font-weight:600;color:#4a5568}
   </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="header"><h1>Donation Confirmed!</h1><p>Thank you for supporting Anandvan</p></div>
-  <div class="body">
-    <p>Dear <strong>${name}</strong>,</p>
-    <p>Thank you for your generous contribution of <strong>₹${formattedAmount}</strong>.</p>
-    <div class="amount-card"><div class="amount-value">₹${formattedAmount}</div></div>
-    <p><strong>Transaction ID:</strong> ${transactionId}<br/><strong>Date:</strong> ${date}</p>
-    <p>If you have any questions, reach out to <a href="mailto:${supportEmail}">${supportEmail}</a>.</p>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-badge">
+      <span>🌳 Anandvan Foundation</span>
+    </div>
+    <h1>Donation Confirmed!</h1>
+    <p>Your contribution has been received. Thank you for making a difference.</p>
   </div>
-  <div class="footer"><p>Anandvan Foundation, Warora – 442914, Maharashtra, India</p></div>
+
+  <!-- Body -->
+  <div class="body">
+    <p class="greeting">Dear ${name},</p>
+    <p class="intro">
+      Thank you for your generous contribution to Anandvan 🙏<br/><br/>
+      We have successfully received your donation of <strong>₹${formattedAmount}</strong> on <strong>${date}</strong>.<br/><br/>
+      Your support helps us continue our mission of empowering and supporting individuals in need.
+      Every contribution, big or small, creates a meaningful impact in improving lives.
+    </p>
+
+    <!-- Amount card -->
+    <div class="amount-card">
+      <div class="amount-label">Amount Donated</div>
+      <div class="amount-value">₹${formattedAmount}</div>
+      <div class="amount-sub">Received on ${date}</div>
+    </div>
+
+    <!-- Donation details -->
+    <p class="section-title">🧾 Donation Details</p>
+    <div class="details-box">
+      <div class="detail-row">
+        <span class="detail-label">Amount</span>
+        <span class="detail-value">₹${formattedAmount}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Transaction ID</span>
+        <span class="detail-value"><span class="txn-id">${transactionId}</span></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Date</span>
+        <span class="detail-value">${date}</span>
+      </div>
+    </div>
+
+    <!-- Impact note -->
+    <div class="impact">
+      <p>
+        Because of your kindness, we are able to provide care, shelter, and opportunities
+        to those who need it most. ❤️
+      </p>
+    </div>
+
+    <p style="font-size:14px;color:#4a5568;line-height:1.75">
+      If you have any questions, feel free to reach out to us at
+      <a href="mailto:${supportEmail}" style="color:#2d6a4f;font-weight:600">${supportEmail}</a>.<br/><br/>
+      Once again, thank you for being a part of this journey ❤️<br/><br/>
+      <strong>Warm regards,</strong><br/>
+      Team Anandvan<br/>
+      <a href="${websiteUrl}" style="color:#2d6a4f;font-weight:600">${websiteUrl}</a>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="badge-row">
+      <div class="badge">🌳 Anandvan</div>
+      <div class="badge">❤️ Since 1951</div>
+      <div class="badge">🇮🇳 Warora, Maharashtra</div>
+    </div>
+    <p>
+      Anandvan Foundation, Warora – 442914, Chandrapur, Maharashtra, India<br/>
+      <a href="${websiteUrl}">${websiteUrl}</a>
+    </p>
+    <p style="margin-top:10px;font-size:11px;color:#cbd5e0">
+      You received this email because a donation was made using this email address.<br/>
+      Transaction reference: ${transactionId}
+    </p>
+  </div>
+
 </div>
 </body>
 </html>`;
