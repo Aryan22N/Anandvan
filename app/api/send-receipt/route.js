@@ -18,13 +18,8 @@ function createTransporter() {
   }
 
   return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: { user, pass },
-    connectionTimeout: 5000, // 5 seconds
-    greetingTimeout: 5000,
-    socketTimeout: 5000,
   });
 }
 
@@ -124,25 +119,25 @@ export async function POST(request) {
     console.log('Initializing transporter...');
     const transporter = createTransporter();
 
-    // Send to Donor
-    console.log('Sending email to donor...');
-    await transporter.sendMail({
-      from: `"${fromName}" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: `🙏 Thank you for your donation to Anandvan – ₹${Number(amount).toLocaleString('en-IN')}`,
-      html,
-    });
-    console.log('Donor email sent.');
-
-    // Send to Org
-    console.log('Sending email to org...');
-    await transporter.sendMail({
-      from: `"Anandvan Notifications" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: `💰 New Donation: ₹${Number(amount).toLocaleString('en-IN')} from ${name}`,
-      text: `New donation received from ${name} (${email}). Amount: ₹${amount}. Category: ${category}.`,
-    });
-    console.log('Org email sent.');
+    // Send emails in parallel to avoid Vercel 10s timeout limit
+    console.log('Sending emails in parallel...');
+    await Promise.all([
+      // Send to Donor
+      transporter.sendMail({
+        from: `"${fromName}" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: `🙏 Thank you for your donation to Anandvan – ₹${Number(amount).toLocaleString('en-IN')}`,
+        html,
+      }),
+      // Send to Org
+      transporter.sendMail({
+        from: `"Anandvan Notifications" <${process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_USER,
+        subject: `💰 New Donation: ₹${Number(amount).toLocaleString('en-IN')} from ${name}`,
+        text: `New donation received from ${name} (${email}). Amount: ₹${amount}. Category: ${category}.`,
+      })
+    ]);
+    console.log('Both emails sent successfully.');
 
     return NextResponse.json({ success: true, transactionId, date: donationDate });
 
