@@ -20,11 +20,11 @@ function createTransporter() {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // Use SSL
+    secure: true,
     auth: { user, pass },
-    connectionTimeout: 10000, // 10 seconds timeout
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
+    connectionTimeout: 5000, // 5 seconds
+    greetingTimeout: 5000,
+    socketTimeout: 5000,
   });
 }
 
@@ -81,9 +81,12 @@ function buildReceiptHtml({ name, amount, date, transactionId, supportEmail, web
 
 // ── POST handler ──────────────────────────────────────────────────────────────
 export async function POST(request) {
+  console.log('POST /api/send-receipt: Started');
   try {
     const body = await request.json();
     const { name, email, phone, amount, category, hindi, message } = body;
+
+    console.log(`Donation from: ${name} (${email}), Amount: ${amount}`);
 
     if (!name || !email || !amount || !category) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -97,6 +100,7 @@ export async function POST(request) {
 
     // Fetch details from Supabase
     try {
+      console.log('Fetching donation from Supabase...');
       let query = supabase.from('donations').select('id, amount, created_at, paid_at');
       if (body.donationId) {
         query = query.eq('id', body.donationId);
@@ -107,6 +111,7 @@ export async function POST(request) {
       if (!error && data && data.length > 0) {
         donationDate = formatDate(data[0].paid_at || data[0].created_at);
         transactionId = shortId(data[0].id);
+        console.log(`Found donation: ${transactionId}`);
       }
     } catch (e) { console.warn('Supabase error:', e); }
 
@@ -115,30 +120,41 @@ export async function POST(request) {
     const fromName = process.env.EMAIL_FROM_NAME || 'Anandvan Foundation';
 
     const html = buildReceiptHtml({ name, amount, date: donationDate, transactionId, supportEmail, websiteUrl });
+    
+    console.log('Initializing transporter...');
     const transporter = createTransporter();
 
     // Send to Donor
+    console.log('Sending email to donor...');
     await transporter.sendMail({
       from: `"${fromName}" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: `🙏 Thank you for your donation to Anandvan – ₹${Number(amount).toLocaleString('en-IN')}`,
       html,
     });
+    console.log('Donor email sent.');
 
     // Send to Org
+    console.log('Sending email to org...');
     await transporter.sendMail({
       from: `"Anandvan Notifications" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `💰 New Donation: ₹${Number(amount).toLocaleString('en-IN')} from ${name}`,
       text: `New donation received from ${name} (${email}). Amount: ₹${amount}. Category: ${category}.`,
     });
+    console.log('Org email sent.');
 
     return NextResponse.json({ success: true, transactionId, date: donationDate });
 
   } catch (err) {
     console.error('CRITICAL: Email send failed:', err);
     return NextResponse.json(
-      { error: 'Failed to send email', details: err.message },
+      { 
+        error: 'Failed to send email', 
+        details: err.message,
+        code: err.code,
+        command: err.command
+      },
       { status: 500 }
     );
   }
